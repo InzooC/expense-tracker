@@ -22,20 +22,23 @@
     <thead>
       <tr>
         <th scope="col" colspan="2">總金額：</th>
-        <th scope="col" colspan="3" style="text-align: end;">Handle</th>
+        <th scope="col" colspan="3" style="text-align: end;">{{ totalAmount }}</th>
         <th scope="col" colspan="3"></th>
       </tr>
     </thead>
     <tbody>
+      {{#each records}}
       <tr>
-        <td>1</td>
-        <td colspan="3">午餐吃漢堡</td>
-        <td style="text-align: end;">60元</td>
+        <td>icon</td>
+        <td colspan="3">{{ this.name }}</td>
+        <td style="text-align: end;">{{ this.amount }}</td>
         <td> </td>
         <td><button>修改</button></td>
         <td><button>刪除</button></td>
       </tr>
-      <tr>
+      {{/each}}
+
+      {{!-- <tr>
         <td>1</td>
         <td colspan="3">午餐吃漢堡</td>
         <td style="text-align: end;">60元</td>
@@ -49,13 +52,13 @@
         <td style="text-align: end;">60元</td>
         <td> </td>
         <td><button>修改</button></td>
-        <td><button>刪除</button></td>
+        <td><button>刪除</button></td> --}}
       </tr>
     </tbody>
   </table>
 
   <div class="row mb-4" style="text-align: center;">
-    <a href="/item/new" style="text-decoration:none;">
+    <a href="/record/new" style="text-decoration:none;">
       <button type="button" style="background-color: orange; color:aliceblue;" class="btn btn-outline-primary mx-3">
         新增支出
       </button>
