@@ -18,7 +18,7 @@
   </div>
 
 
-  <table class="table table-bordered table-striped">
+  <table class="table table-striped table-borderless">
     <thead>
       <tr>
         <th scope="col" colspan="2">總金額：</th>
@@ -33,27 +33,10 @@
         <td colspan="3">{{ this.name }}</td>
         <td style="text-align: end;">{{ this.amount }}</td>
         <td> </td>
-        <td><button>修改</button></td>
-        <td><button>刪除</button></td>
+        <td><a href="/record/:id/edit" style="text-decoration:none; color:grey;">修改</a></td>
+        <td><a href="/record/:id/delete" style="text-decoration:none; color:grey;">刪除</a></td>
       </tr>
       {{/each}}
-
-      {{!-- <tr>
-        <td>1</td>
-        <td colspan="3">午餐吃漢堡</td>
-        <td style="text-align: end;">60元</td>
-        <td> </td>
-        <td><button>修改</button></td>
-        <td><button>刪除</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td colspan="3">午</td>
-        <td style="text-align: end;">60元</td>
-        <td> </td>
-        <td><button>修改</button></td>
-        <td><button>刪除</button></td> --}}
-      </tr>
     </tbody>
   </table>
 
