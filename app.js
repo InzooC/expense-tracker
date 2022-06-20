@@ -2,11 +2,18 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 
-const app = express()
+
+
+
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+
+require('./config/mongoose')
+
+const app = express()
+
 
 
 const port = process.env.PORT
@@ -34,12 +41,12 @@ app.get('/item/edit', (req, res) => {
   res.render('edit')
 })
 
-
-
-
 app.get('/user/login', (req, res) => {
   res.send('login頁面')
 })
+
+
+
 
 
 app.listen(port, () => {
