@@ -27,9 +27,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  console.log(req.body)
   res.render('index')
 })
+
 
 
 app.listen(port, () => {
