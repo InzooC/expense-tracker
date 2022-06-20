@@ -21,18 +21,21 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-
+//瀏覽首頁
 app.get('/', (req, res) => {
   res.render('index')
 })
-
-app.post('/', (req, res) => {
-  res.render('index')
-})
-
+// 瀏覽新增頁面
 app.get('/item/new', (req, res) => {
   res.render('new')
 })
+//瀏覽編輯頁面
+app.get('/item/edit', (req, res) => {
+  res.render('edit')
+})
+
+
+
 
 app.get('/user/login', (req, res) => {
   res.send('login頁面')
