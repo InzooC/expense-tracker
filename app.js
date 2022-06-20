@@ -30,6 +30,13 @@ app.post('/', (req, res) => {
   res.render('index')
 })
 
+app.get('/item/new', (req, res) => {
+  res.render('new')
+})
+
+app.get('/user/login', (req, res) => {
+  res.send('login頁面')
+})
 
 
 app.listen(port, () => {
