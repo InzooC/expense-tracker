@@ -1,4 +1,5 @@
 const express = require('express')
+const exphbs = require('express-handlebars')
 
 const app = express()
 
@@ -7,11 +8,19 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
+
 const port = process.env.PORT
 
 
+
+//設定引擎模板
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
+
+
 app.get('/', (req, res) => {
-  res.send('gogo')
+  res.render('index')
 })
 
 
