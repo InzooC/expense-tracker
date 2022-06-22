@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12 m-auto">
 
-      <form method="POST" action="/record/{{record._id}}">
+      <form action="/record/{{record._id}}?_method=PUT" method="POST">
         <div class="row col-12 mb-3">
           <label class="col-2 col-form-label">*必填欄位</label>
           <div class="col-6">
@@ -35,8 +35,8 @@
           <div class="col-6">
             {{!-- 這邊真的不容易捏，從這邊開始寫 --}}
             <select class="form-select" name="category" id="category" required>
-              
-              <option value={{ record.categoryNumber }} selected>{{ record.category }}</option>
+
+              <option value="{{ record.categoryNumber }}" selected>{{ record.category }}</option>
 
               {{#each filterCategory}}
               <option value="{{ this.id }}">{{ this.name }}</option>

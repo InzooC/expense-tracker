@@ -25,10 +25,9 @@ router.get('/:id/edit', (req, res) => {
 })
 
 //編輯一個record
-router.post('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const _id = req.params.id
   const { name, date, category, amount } = req.body
-  console.log(name, date, category, amount)
   return Record.findOne({ _id })
     .then(record => {
       Category.findOne({ id: category })
@@ -36,8 +35,8 @@ router.post('/:id', (req, res) => {
           record.category = categoryData.name
           record.name = name
           record.date = date
-          record.categoryNumber = category
-          record.amount = amount
+          record.categoryNumber = Number(category)
+          record.amount = Number(amount)
           return record.save()
         })
     })
@@ -47,11 +46,32 @@ router.post('/:id', (req, res) => {
       res.render('errorPage', { error: '無法修改紀錄' })
     })
 })
+// save之後 回到首頁，資料沒有辦法快速更新
+// 跟非同步有關？
 
 
 // 瀏覽新增頁面
 router.get('/new', (req, res) => {
   res.render('new')
+})
+
+// 新增一個record
+router.post('/new', (req, res) => {
+  const { name, date, category, amount } = req.body
+  let categoryName = ""
+  Category.findOne({ id: Number(category) })
+    .then(categoryData => {
+      // categoryName = categoryData.name
+      console.log(categoryName)
+      return Record.create({ name, date, categoryNumber: category, amount, category: categoryData.name })
+        .then(() => {
+          res.redirect('/')
+        })
+        .catch(error => {
+          console.error(error)
+          res.render('errorPage', { error: '無法新增餐廳' })
+        })
+    })
 })
 
 module.exports = router

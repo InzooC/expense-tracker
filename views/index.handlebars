@@ -33,8 +33,13 @@
         <td colspan="3">{{ this.name }}</td>
         <td style="text-align: end;">{{ this.amount }}</td>
         <td> </td>
-        <td><a href="/record/{{ this._id }}/edit" style="text-decoration:none; color:grey;">修改</a></td>
-        <td><a href="/record/{{ this._id }}/delete" style="text-decoration:none; color:grey;">刪除</a></td>
+        <td>
+          <a href="/record/{{ this._id }}/edit" style="text-decoration:none; color:grey;">修改</a>
+        </td>
+        <td>
+          <a href="/record/{{ this._id }}/delete" action="/restaurant/{{this._id}}?_method=DELETE" method="POST"
+            style="text-decoration:none; color:grey;">刪除</a>
+        </td>
       </tr>
       {{/each}}
     </tbody>
