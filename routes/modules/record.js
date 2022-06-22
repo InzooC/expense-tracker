@@ -74,4 +74,17 @@ router.post('/new', (req, res) => {
     })
 })
 
+//刪除一個record
+router.delete('/:id', (req, res) => {
+  const _id = req.params.id
+  return Record.findOne({ _id })
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => {
+      console.error(error)
+      res.render('errorPage', { error: '無法刪除餐廳資訊' })
+    })
+})
+
+
 module.exports = router
