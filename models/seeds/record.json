@@ -3,42 +3,47 @@
       {
         "id": 1,
         "name": "午餐",
-        "date": "2019,4,23",
+        "date": "2019-4-23",
         "amount": 60,
-        "userId": 1,
-        "categoryId": 4
+        "user": 1,
+        "categoryNumber": 4,
+        "category": "餐飲食品"
       },
       {
         "id": 2,
         "name": "晚餐",
-        "date": "2019,4,23",
+        "date": "2019-4-23",
         "amount": 60,
-        "userId": 1,
-        "categoryId": 4
+        "user": 1,
+        "categoryNumber": 4,
+        "category": "餐飲食品"
       },
       {
         "id": 3,
         "name": "捷運",
-        "date": "2019,4,23",
+        "date": "2019-4-23",
         "amount": 120,
-        "userId": 1,
-        "categoryId": 2
+        "user": 1,
+        "categoryNumber": 2,
+        "category": "旅遊出行"
       },
       {
         "id": 4,
         "name": "電影：驚奇隊長",
-        "date": "2019,4,23",
+        "date": "2019-4-23",
         "amount": 220,
-        "userId": 2,
-        "categoryId": 3
+        "user": 2,
+        "categoryNumber": 3,
+        "category": "休閒娛樂"
       },
       {
         "id": 5,
         "name": "租金",
-        "date": "2019,4,23",
+        "date": "2015-4-01",
         "amount": 25000,
-        "userId": 1,
-        "categoryId": 1
+        "user": 1,
+        "categoryNumber": 1,
+        "category": "家居物業"
       }
     ]
   }

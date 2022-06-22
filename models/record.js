@@ -6,6 +6,8 @@ const recordSchema = new Schema({
   name: { type: String, require: true },
   date: { type: Date, require: true },
   amount: { type: Number, require: true },
+  category: { type: String, require: true },
+  categoryNumber: { type: Number, require: true }
   // ,  還沒建立關聯變項
   // userId: {
   //   type: Schema.Types.ObjectId,

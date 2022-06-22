@@ -17,7 +17,7 @@
           <label for="inputPassword" class="col-2 col-form-label">名稱<span style="vertical-align: top;">*</span>：
           </label>
           <div class="col-6">
-            <input type="text" class="form-control" id="name" name="name">
+            <input type="text" class="form-control" id="name" name="name" value="{{ record.name }}">
           </div>
         </div>
 
@@ -25,23 +25,26 @@
           <label for="date" class="col-2 col-form-label">日期<span style="vertical-align: top;">*</span>：
           </label>
           <div class="col-6">
-            <input type="date" class="form-control" id="date" name="date">
+            <input type="date" class="form-control" id="date" name="date" value="{{ formatDate }}">
           </div>
         </div>
 
-
         <div class="row col-12 mb-3">
-          <label for="amount" class="col-2 col-form-label">類別<span style="vertical-align: top;">*</span>：
+          <label for="category" class="col-2 col-form-label">類別<span style="vertical-align: top;">*</span>：
           </label>
 
+
           <div class="col-6">
-            <select class="form-select form-select" name="amount" id="amount">
-              <option value="1">家居物業</option>
-              <option value="2">旅遊出行</option>
-              <option value="3">休閒娛樂</option>
-              <option value="4">餐飲食品</option>
-              <option value="5">其他</option>
+            {{!-- 這邊真的不容易捏，從這邊開始寫 --}}
+            <select class="form-select" name="category" id="category" required>
+              <option value={{ record.categoryNumber }} selected>{{ record.category }}</option>
+
+              {{#each filterCategory}}
+              <option value="{{ this.id }}">{{ this.name }}</option>
+              {{/each}}
+
             </select>
+
           </div>
         </div>
 
@@ -50,7 +53,7 @@
           <label for="amount" class="col-2 col-form-label">金額<span style="vertical-align: top;">*</span>：
           </label>
           <div class="col-6">
-            <input type="number" class="form-control" id="amount" name="amount">
+            <input type="number" class="form-control" id="amount" name="amount" value="{{ record.amount }}">
           </div>
         </div>
 

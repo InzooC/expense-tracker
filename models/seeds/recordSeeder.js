@@ -10,6 +10,7 @@ const recordsList = require('./record.json').records
 
 
 db.once('open', () => {
-    Record.create(recordsList)
-  
+  db.dropDatabase()
+  Record.create(recordsList)
+  console.log('recordSeeder is done.')
 })
