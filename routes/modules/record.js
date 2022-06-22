@@ -49,7 +49,6 @@ router.put('/:id', (req, res) => {
 // save之後 回到首頁，資料沒有辦法快速更新
 // 跟非同步有關？
 
-
 // 瀏覽新增頁面
 router.get('/new', (req, res) => {
   res.render('new')
@@ -85,6 +84,8 @@ router.delete('/:id', (req, res) => {
       res.render('errorPage', { error: '無法刪除餐廳資訊' })
     })
 })
+
+//只顯示特定類別
 
 
 module.exports = router
