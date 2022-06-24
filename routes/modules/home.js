@@ -7,19 +7,17 @@ const Category = require('../../models/category')
 router.get('/', (req, res) => {
   Record.find()//拿出Record model所有東西
     .lean()
-    // .sort({ : 'asc' })
     .then(records => {
       let totalAmount = 0
-      records.map(record => totalAmount += record.amount)
-      const showRecords = records
-
-      showRecords.map(record => {
+      let icon = ''  //必須把icon放進record中．．．．
+      records.map(record => {
+        totalAmount += record.amount
         Category.findOne({ id: record.categoryNumber })
           .then(categoryData => {
-            record.icon = categoryData.name
+            icon = categoryData.icon
           })
       })
-      return res.render('index', { showRecords, totalAmount })
+      return res.render('index', { records, totalAmount })
     })
     .catch(error => {
       console.error(error)
