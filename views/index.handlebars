@@ -4,8 +4,23 @@
   <!-- search bar -->
   <form action="/filter" method="POST" class="container">
     <div class="input-group mb-3">
+
+
+      {{#if filterCategory}}
+
+      <select class="form-select" name="category" id="category" onchange="this.form.submit()">
+
+        <option value="{{ categoryNumber }}" selected>{{ category }}</option>
+
+        {{#each filterCategory}}
+        <option value="{{ this.id }}">{{ this.name }}</option>
+        {{/each}}
+
+      </select>
+
+
+      {{else}}
       <select class="form-select" id="category" name="category" onchange="this.form.submit()">
-        {{!-- 還沒做出顯示現在選的類別 --}}
         <option value="0">類別</option>
         <option value="1">家居物業</option>
         <option value="2">交通出行</option>
@@ -13,6 +28,8 @@
         <option value="4">餐飲食品</option>
         <option value="5">其他</option>
       </select>
+      {{/if}}
+
     </div>
   </form>
 

@@ -33,16 +33,19 @@ router.post('/filter', (req, res) => {
     .then(records => {
       let totalAmount = 0
       records.map(record => totalAmount += record.amount)
-      const showRecords = records
+      const { categoryNumber, category } = records[0]
+      Category.find().lean()
+        .then(categoryData => {
+          const filterCategory = categoryData.filter(eachCategory => eachCategory.id !== selectedCategoryValue)
+          res.render('index', { records, totalAmount, filterCategory, categoryNumber, category })
+        })
 
-      return res.render('index', { showRecords, totalAmount, selectedCategoryValue })
     })
     .catch(error => {
       console.error(error)
       res.render('errorPage', { error: '無法瀏覽首頁' })
     })
 })
-
 
 
 

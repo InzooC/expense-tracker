@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
-// const categories = require('../../models/seeds/category.json').categories
 const Category = require('../../models/category')
 
 
@@ -24,30 +23,32 @@ router.get('/:id/edit', (req, res) => {
     })
 })
 
+
 //編輯一個record
+// save之後 回到首頁，資料沒有辦法快速更新
 router.put('/:id', (req, res) => {
   const _id = req.params.id
   const { name, date, category, amount } = req.body
-  return Record.findOne({ _id })
-    .then(record => {
-      Category.findOne({ id: category })
-        .then(categoryData => {
-          record.category = categoryData.name
-          record.name = name
-          record.date = date
-          record.categoryNumber = Number(category)
-          record.amount = Number(amount)
-          return record.save()
-        })
-    })
-    .then(() => res.redirect('/'))
-    .catch(error => {
-      console.error(error)
-      res.render('errorPage', { error: '無法修改紀錄' })
-    })
+  new Promise((resolve, _reject) => {
+    Record.findOne({ _id })
+      .then(record => {
+        Category.findOne({ id: category })
+          .then(categoryData => {
+            record.category = categoryData.name
+            record.name = name
+            record.date = date
+            record.categoryNumber = Number(category)
+            record.amount = Number(amount)
+            return record.save()
+          })
+      })
+      .then(() => res.redirect('/'))
+      .catch(error => {
+        console.error(error)
+        res.render('errorPage', { error: '無法修改紀錄' })
+      })
+  })
 })
-// save之後 回到首頁，資料沒有辦法快速更新
-// 跟非同步有關？
 
 // 瀏覽新增頁面
 router.get('/new', (req, res) => {
@@ -60,16 +61,14 @@ router.post('/new', (req, res) => {
   let categoryName = ""
   Category.findOne({ id: Number(category) })
     .then(categoryData => {
-      // categoryName = categoryData.name
-      console.log(categoryName)
       return Record.create({ name, date, categoryNumber: category, amount, category: categoryData.name })
-        .then(() => {
-          res.redirect('/')
-        })
-        .catch(error => {
-          console.error(error)
-          res.render('errorPage', { error: '無法新增餐廳' })
-        })
+    })
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(error => {
+      console.error(error)
+      res.render('errorPage', { error: '無法新增餐廳' })
     })
 })
 
