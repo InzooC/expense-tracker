@@ -6,10 +6,13 @@ const db = require('../../config/mongoose')
 const Category = require('../category')
 
 
-const categoriesList = require('./category.json').categories
+const categoriesList = require('./data').categories
 
 
 db.once('open', () => {
   Category.create(categoriesList)
-  console.log('categorySeeder is done.')
+    .then(() => {
+      console.log('categorySeeder is done.')
+      db.close()
+    })
 })
