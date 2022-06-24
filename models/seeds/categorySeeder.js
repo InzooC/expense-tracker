@@ -13,6 +13,6 @@ db.once('open', () => {
   Category.create(categoriesList)
     .then(() => {
       console.log('categorySeeder is done.')
-      db.close()
+      process.exit()
     })
 })
