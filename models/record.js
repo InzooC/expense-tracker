@@ -7,21 +7,20 @@ const recordSchema = new Schema({
   date: { type: Date, require: true },
   amount: { type: Number, require: true },
   category: { type: String, require: true },
-  categoryNumber: { type: Number, require: true }
-  // ,  還沒建立關聯變項
-  // userId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   index: true,
-  //   required: true
-  // }
-  // ,  還沒建立關聯變項
-  // categoryId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Category',
-  //   index: true,
-  //   required: true
-  // }
+  categoryNumber: { type: Number, require: true },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
+  },
+  categoryId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    index: true,
+    required: false
+  },
+  icon: { type: String, require: false }
 })
 
 module.exports = mongoose.model('Record', recordSchema)

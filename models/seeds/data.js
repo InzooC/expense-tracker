@@ -34,7 +34,6 @@ const records = [
     name: "午餐",
     date: "2019-4-23",
     amount: 60,
-    user: 1,
     categoryNumber: 4,
     category: "餐飲食品"
   },
@@ -43,7 +42,6 @@ const records = [
     name: "晚餐",
     date: "2019-4-23",
     amount: 60,
-    user: 1,
     categoryNumber: 4,
     category: "餐飲食品"
   },
@@ -52,7 +50,6 @@ const records = [
     name: "捷運",
     date: "2019-4-23",
     amount: 120,
-    user: 1,
     categoryNumber: 2,
     category: "旅遊出行"
   },
@@ -61,7 +58,6 @@ const records = [
     name: "電影：驚奇隊長",
     date: "2019-4-23",
     amount: 220,
-    user: 2,
     categoryNumber: 3,
     category: "休閒娛樂"
   },
@@ -70,7 +66,6 @@ const records = [
     name: "租金",
     date: "2015-4-01",
     amount: 25000,
-    user: 1,
     categoryNumber: 1,
     category: "家居物業"
   }
@@ -79,11 +74,17 @@ const records = [
 const users = [
   {
     id: 1,
-    name: '廣志'
+    name: '廣志',
+    password: 123,
+    email: 'user1@test',
+    recordSerial: [1, 2, 3, 5]
   },
   {
     id: 2,
-    name: '小新'
+    name: '小新',
+    password: 123,
+    email: 'user2@test',
+    recordSerial: [4]
   }
 ]
 
