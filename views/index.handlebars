@@ -46,7 +46,9 @@
     <tbody>
       {{#each records}}
       <tr>
-        <td>{{this.icon}}</td>
+        <td>
+          <i class="{{this.icon}}"></i>
+        </td>
         <td colspan="3">{{ this.name }}</td>
         <td style="text-align: end;">{{ this.amount }}</td>
         <td>
