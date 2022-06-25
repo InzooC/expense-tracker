@@ -5,8 +5,10 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 
 router.get('/', (req, res) => {
-  Record.find()//拿出Record model所有東西
+  const userId = req.user._id
+  Record.find({ userId })//拿出特定user_id的record
     .lean()
+    .sort({ _id: 'asc' })
     .then(records => {
       let totalAmount = 0
       let icon = ''  //必須把icon放進record中．．．．

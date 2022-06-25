@@ -12,15 +12,15 @@ const recordSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     index: true,
-    required: false
+    required: true
   },
   categoryId: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
     index: true,
-    required: false
+    required: true
   },
-  icon: { type: String, require: false }
+  icon: { type: String, require: true }
 })
 
 module.exports = mongoose.model('Record', recordSchema)
