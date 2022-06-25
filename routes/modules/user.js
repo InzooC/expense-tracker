@@ -13,6 +13,12 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect: '/user/login'
 }))
 
+//帳號登出
+router.get('/logout', (req, res) => {
+  req.logout()
+  // req.flash('success_msg', '你已經成功登出。')   //還沒加flash功能
+  res.redirect('/user/login')
+})
 
 //瀏覽註冊頁面
 router.get('/register', (req, res) => {
@@ -58,12 +64,6 @@ router.post('/register', (req, res) => {
   res.redirect('/')
 })
 
-//帳號登出
-router.get('/logout', (req, res) => {
-  req.logout()
-  // req.flash('success_msg', '你已經成功登出。')   //還沒加flash功能
-  res.redirect('/login')
-})
 
 
 
