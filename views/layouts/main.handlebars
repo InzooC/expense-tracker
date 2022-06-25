@@ -16,14 +16,28 @@
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
-        家庭記帳本
+        {{#if isAuthenticated}}{{ user.name }}的{{else}}家庭{{/if}}記帳本
       </a>
-      <i class="fa-solid fa-van-shuttle" style="width: 4px;"></i>
+
+      {{#if isAuthenticated}}
+
       <a href="/user/logout" style="text-decoration:none;">
         <button type="button" class="btn btn-outline-primary mx-3">
           登出
         </button>
       </a>
+
+      {{else}}
+      <a href="/user/login" style="text-decoration:none;">
+        <button type="button" class="btn btn-outline-primary mx-3">
+          登入
+        </button>
+      </a>
+
+
+
+      {{/if}}
+
     </div>
   </nav>
 
