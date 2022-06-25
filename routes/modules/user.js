@@ -16,7 +16,7 @@ router.post('/login', passport.authenticate('local', {
 //帳號登出
 router.get('/logout', (req, res) => {
   req.logout()
-  // req.flash('success_msg', '你已經成功登出。')   //還沒加flash功能
+  req.flash('success_msg', '你已經成功登出')
   res.redirect('/user/login')
 })
 
