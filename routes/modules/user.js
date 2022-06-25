@@ -27,12 +27,12 @@ router.get('/register', (req, res) => {
 // 進行註冊
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
-  const errors = []  //message功能還沒放上去
+  const errors = []
   if (!name || !email || !password || !confirmPassword) {
-    errors.push({ massage: '所有欄位都是必填的！' })
+    errors.push({ message: '所有欄位都是必填的！' })
   }
   if (password !== confirmPassword) {
-    errors.push({ massage: '密碼與驗證密碼不相同！' })
+    errors.push({ message: '密碼與驗證密碼不相同！' })
   }
   if (errors.length) {
     return res.render('register', {
@@ -41,9 +41,9 @@ router.post('/register', (req, res) => {
   }
   User.findOne({ email })
     .then(user => {
-      if (user) { //message功能還沒放上去
-        errors.push({ massage: '此Email已註冊過！' })
-        res.render('register', {
+      if (user) {
+        errors.push({ message: '此Email已註冊過！' })
+        return res.render('register', {
           errors, name, email, password, confirmPassword
         })
       }
@@ -58,10 +58,8 @@ router.post('/register', (req, res) => {
       //     .catch(err => console.log(err)))
       return User.create({ name, email, password })
     })
+    .then(() => res.redirect('/'))
     .catch(err => console.log(err))
-
-
-  res.redirect('/')
 })
 
 

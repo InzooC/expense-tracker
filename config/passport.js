@@ -7,22 +7,20 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
   // 設定本地登入策略
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
     User.findOne({ email })
       .then(user => {
         if (!user) {
-          return done(null, false, {
-            message: '這個email尚未註冊'
-          })
+          req.flash('failureLogin_msg', 'Email 還未被註冊！')
+          return done(null, false)
         }
         if (user.password !== password) {
-          return done(null, false, {
-            message: 'email或密碼不正確'
-          })
+          req.flash('failureLogin_msg', '帳號或密碼不正確')
+          return done(null, false)
         }
         return done(null, user)
       })
-      .catch(err => done(err, false))
+      .catch(error => done(error, false))
   }))
   // 設定序列化與反序列化
   passport.serializeUser((user, done) => {
