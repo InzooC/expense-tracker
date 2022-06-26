@@ -16,21 +16,21 @@
 
 <body>
   <!-- navigation -->
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-light" style="background-color:rgb(219, 224, 230);">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         {{#if isAuthenticated}}{{ user.name }}的{{else}}家庭{{/if}}記帳本
       </a>
       {{#if isAuthenticated}}
       <a href="/user/logout" style="text-decoration:none;">
-        <button type="button" class="btn btn-outline-primary mx-3">
+        <button type="button" class="btn btn-outline-dark mx-3" style="background-color:aliceblue; color:tomato;">
           登出
         </button>
       </a>
 
       {{else}}
       <a href="/user/login" style="text-decoration:none;">
-        <button type="button" class="btn btn-outline-primary mx-3">
+        <button type="button" class="btn btn-outline-dark mx-3" style="background-color:aliceblue; color:tomato;">
           登入
         </button>
       </a>
