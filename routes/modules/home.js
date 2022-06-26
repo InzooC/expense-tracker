@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 
@@ -11,15 +10,15 @@ router.get('/', (req, res) => {
     .sort({ _id: 'asc' })
     .then(records => {
       let totalAmount = 0
-      let icon = ''  //必須把icon放進record中．．．．
+      const userRecords = []
       records.map(record => {
         totalAmount += record.amount
-        Category.findOne({ id: record.categoryNumber })
-          .then(categoryData => {
-            icon = categoryData.icon
-          })
+        // let formateDate = ''
+        // formateDate = record.date.toJSON().toString().slice(0, 10)
+        record.formateDate = record.date.toJSON().toString().slice(0, 10)
+        userRecords.push(record)
       })
-      return res.render('index', { records, totalAmount })
+      return res.render('index', { userRecords, totalAmount })
     })
     .catch(error => {
       console.error(error)
@@ -29,18 +28,23 @@ router.get('/', (req, res) => {
 
 //選取特定類別
 router.post('/filter', (req, res) => {
+  const userId = req.user._id
   const selectedCategoryValue = Number(req.body.category)
-  Record.find({ categoryNumber: selectedCategoryValue })
+  Record.find({ categoryNumber: selectedCategoryValue, userId })
     .lean()
     .then(records => {
       let totalAmount = 0
       records.map(record => totalAmount += record.amount)
-      const { categoryNumber, category } = records[0]
-      Category.find().lean()
-        .then(categoryData => {
-          const filterCategory = categoryData.filter(eachCategory => eachCategory.id !== selectedCategoryValue)
-          res.render('index', { records, totalAmount, filterCategory, categoryNumber, category })
-        })
+      if (records.length === 0) {
+        return res.render('index', { records, totalAmount })
+      } else {
+        const { categoryNumber, category } = records[0]
+        Category.find().lean()
+          .then(categoryData => {
+            const filterCategory = categoryData.filter(eachCategory => eachCategory.id !== selectedCategoryValue)
+            res.render('index', { records, totalAmount, filterCategory, categoryNumber, category })
+          })
+      }
 
     })
     .catch(error => {
