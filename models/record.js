@@ -20,7 +20,7 @@ const recordSchema = new Schema({
     index: true,
     required: false
   },
-  icon: { type: String, require: true }
+  icon: { type: String, require: false }
 })
 
 module.exports = mongoose.model('Record', recordSchema)

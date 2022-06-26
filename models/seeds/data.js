@@ -75,14 +75,14 @@ const users = [
   {
     id: 1,
     name: '廣志',
-    password: 123,
+    password: '123',
     email: 'user1@test',
     recordSerial: [1, 2, 3, 5]
   },
   {
     id: 2,
     name: '小新',
-    password: 123,
+    password: '123',
     email: 'user2@test',
     recordSerial: [4]
   }

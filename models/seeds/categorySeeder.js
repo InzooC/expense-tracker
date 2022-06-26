@@ -10,6 +10,7 @@ const categoriesList = require('./data').categories
 
 
 db.once('open', () => {
+  db.dropDatabase()
   Category.create(categoriesList)
     .then(() => {
       console.log('categorySeeder is done.')
