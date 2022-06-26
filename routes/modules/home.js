@@ -13,8 +13,7 @@ router.get('/', (req, res) => {
       const userRecords = []
       records.map(record => {
         totalAmount += record.amount
-        // let formateDate = ''
-        // formateDate = record.date.toJSON().toString().slice(0, 10)
+
         record.formateDate = record.date.toJSON().toString().slice(0, 10)
         userRecords.push(record)
       })
@@ -35,14 +34,15 @@ router.post('/filter', (req, res) => {
     .then(records => {
       let totalAmount = 0
       records.map(record => totalAmount += record.amount)
+
       if (records.length === 0) {
-        return res.render('index', { records, totalAmount })
+        return res.render('index', { totalAmount })
       } else {
         const { categoryNumber, category } = records[0]
         Category.find().lean()
           .then(categoryData => {
             const filterCategory = categoryData.filter(eachCategory => eachCategory.id !== selectedCategoryValue)
-            res.render('index', { records, totalAmount, filterCategory, categoryNumber, category })
+            res.render('index', { userRecords: records, totalAmount, filterCategory, categoryNumber, category })
           })
       }
 
