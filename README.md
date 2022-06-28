@@ -33,5 +33,5 @@
 5. 輸入：npm run seed 來建立種子資料
 6. 輸入：npm run start 啟動伺服器
 7. 若看見 Express is listening on http://localhost:3000 訊息則代表順利運行，打開瀏覽器進入到以下網址 http://localhost:3000
-8. 可使用種子資料的帳密進行登入(帳：use1@test  密：123)
+8. 可使用種子資料的帳密進行登入(帳：user1@test  密：123)
 9. 若欲暫停使用 ctrl + c
